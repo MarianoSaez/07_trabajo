@@ -60,4 +60,4 @@ class ProductoService:
                 mid += int(mid/2)
             if repo[mid]["_precio"] == price:
                 return repo[mid]
-
+        return repo[mid]
