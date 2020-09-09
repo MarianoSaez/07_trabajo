@@ -51,13 +51,14 @@ class ProductoService:
         return lista_ordenada
 
     def busqueda_binaria(self, repo, price):
-        repo = self.insertion_sort_precio(repo, "ascendente")
-        mid = int(len(repo)/2)
-        while repo[mid]["_precio"] != price:
-            if repo[mid]["_precio"] > price:
-                mid = int(mid/2)
+        left = 0
+        right = len(repo) - 1
+        while left <= right:
+            mid = int((left + right)/2)
             if repo[mid]["_precio"] < price:
-                mid += int(mid/2)
-            if repo[mid]["_precio"] == price:
-                return repo[mid]
-        return repo[mid]
+                left = mid + 1
+            if repo[mid]["_precio"] > price:
+                right = mid - 1
+            else:
+                return repo[mid]["_precio"]
+        return {}
